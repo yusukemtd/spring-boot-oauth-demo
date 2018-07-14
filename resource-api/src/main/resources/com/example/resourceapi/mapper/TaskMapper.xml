@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.resourceapi.mapper.TaskMapper">
+
+	<resultMap type="Task" id="taskResultMap">
+		<result column="task_id" property="taskId" />
+		<result column="task" property="task" />
+		<result column="username" property="username" />
+		<result column="created_at" property="createdAt" />
+	</resultMap>
+
+	<select id="findAll" resultMap="taskResultMap">
+		SELECT task_id, task, username, created_at FROM tasks ORDER BY created_at DESC
+	</select>
+
+	<select id="findByUsrname" parameterType="string"
+		resultMap="taskResultMap">
+		SELECT task_id, task, username, created_at FROM tasks WHERE username =
+		#{username} ORDER BY created_at DESC
+	</select>
+
+	<insert id="insert">
+		INSERT INTO tasks (task_id, task, username, created_at) VALUES (#{taskId}, #{task},
+		#{username}, #{createdAt})
+	</insert>
+
+</mapper>

@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Resource {
+public class Task {
 
-  public String resourceId;
+  public String taskId;
   
-  public String msg;
+  public String task;
 
   public String username;
 
