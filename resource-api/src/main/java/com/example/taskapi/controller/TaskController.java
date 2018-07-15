@@ -22,13 +22,13 @@ public class TaskController {
   }
 
   @GetMapping("v1/tasks")
-  List<Task> getResourcesByUser(Authentication authentication) {
+  List<Task> getTaskByUser(Authentication authentication) {
     String username = authentication.getName();
     return taskService.findByUsername(username);
   }
 
   @PostMapping("v1/task")
-  Task postResource(@RequestBody Task task, Authentication authentication) {
+  Task postTask(@RequestBody Task task, Authentication authentication) {
     task.username = authentication.getName();
     return taskService.create(task);
   }
