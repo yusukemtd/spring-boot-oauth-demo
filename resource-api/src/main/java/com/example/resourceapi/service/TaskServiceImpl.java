@@ -23,7 +23,7 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   public List<Task> findByUsername(String username) {
-    return taskMapper.findByUsrname(username);
+    return taskMapper.findByUsername(username);
   }
 
   @Override

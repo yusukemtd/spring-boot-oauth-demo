@@ -9,7 +9,7 @@ public interface TaskMapper {
 
   List<Task> findAll();
 
-  List<Task> findByUsrname(String usrname);
+  List<Task> findByUsername(String username);
 
   void insert(Task resource);
 

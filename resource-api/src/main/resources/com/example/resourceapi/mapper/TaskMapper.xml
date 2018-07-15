@@ -16,7 +16,7 @@
 		SELECT task_id, task, username, created_at FROM tasks ORDER BY created_at DESC
 	</select>
 
-	<select id="findByUsrname" parameterType="string"
+	<select id="findByUsername" parameterType="string"
 		resultMap="taskResultMap">
 		SELECT task_id, task, username, created_at FROM tasks WHERE username =
 		#{username} ORDER BY created_at DESC
