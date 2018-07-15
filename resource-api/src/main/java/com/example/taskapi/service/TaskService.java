@@ -1,7 +1,7 @@
-package com.example.resourceapi.service;
+package com.example.taskapi.service;
 
 import java.util.List;
-import com.example.resourceapi.domain.Task;
+import com.example.taskapi.domain.Task;
 
 public interface TaskService {
 

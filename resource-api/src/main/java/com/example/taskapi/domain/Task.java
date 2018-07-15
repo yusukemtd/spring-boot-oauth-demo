@@ -1,4 +1,4 @@
-package com.example.resourceapi.domain;
+package com.example.taskapi.domain;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

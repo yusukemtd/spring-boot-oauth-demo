@@ -1,4 +1,4 @@
-package com.example.resourceapi.controller;
+package com.example.taskapi.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.resourceapi.domain.Task;
-import com.example.resourceapi.service.TaskService;
+import com.example.taskapi.domain.Task;
+import com.example.taskapi.service.TaskService;
 
 @RestController
 public class TaskController {

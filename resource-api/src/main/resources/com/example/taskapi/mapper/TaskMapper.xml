@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.resourceapi.mapper.TaskMapper">
+<mapper namespace="com.example.taskapi.mapper.TaskMapper">
 
 	<resultMap type="Task" id="taskResultMap">
 		<result column="task_id" property="taskId" />

@@ -1,8 +1,8 @@
-package com.example.resourceapi.mapper;
+package com.example.taskapi.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import com.example.resourceapi.domain.Task;
+import com.example.taskapi.domain.Task;
 
 @Mapper
 public interface TaskMapper {

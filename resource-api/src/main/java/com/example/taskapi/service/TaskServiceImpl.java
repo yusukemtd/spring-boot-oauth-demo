@@ -1,4 +1,4 @@
-package com.example.resourceapi.service;
+package com.example.taskapi.service;
 
 import java.util.Date;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.resourceapi.domain.Task;
-import com.example.resourceapi.mapper.TaskMapper;
+import com.example.taskapi.domain.Task;
+import com.example.taskapi.mapper.TaskMapper;
 
 @Service
 @Transactional
