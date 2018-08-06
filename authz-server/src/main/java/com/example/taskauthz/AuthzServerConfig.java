@@ -11,7 +11,12 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.ApprovalStoreUserApprovalHandler;
+import org.springframework.security.oauth2.provider.approval.InMemoryApprovalStore;
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
+import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -24,12 +29,15 @@ public class AuthzServerConfig extends AuthorizationServerConfigurerAdapter {
 //  @Autowired
 //  private TokenStore tokenStore;
 
-  @Autowired
-  private UserApprovalHandler userApprovalHandler;
+//  @Autowired
+//  private UserApprovalHandler userApprovalHandler;
 
   @Autowired
   private AuthenticationManager authenticationManager;
 
+  @Autowired
+  private ClientDetailsService clientDetailsService;
+ 
   @Override
   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
     security.checkTokenAccess("isAuthenticated()");
@@ -52,7 +60,7 @@ public class AuthzServerConfig extends AuthorizationServerConfigurerAdapter {
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
     endpoints.tokenStore(tokenStore())
       .accessTokenConverter(accessTokenConverter())
-      .userApprovalHandler(userApprovalHandler)
+      .userApprovalHandler(userApprovalHandler(approvalStore()))
       .authenticationManager(authenticationManager);
   }
   
@@ -82,4 +90,21 @@ public class AuthzServerConfig extends AuthorizationServerConfigurerAdapter {
     defaultTokenServices.setSupportRefreshToken(true);
     return defaultTokenServices;
   }
+
+  @Bean
+  @Autowired
+  public ApprovalStore approvalStore() throws Exception {
+    return new InMemoryApprovalStore();
+  }
+  
+  @Bean
+  @Autowired
+  public UserApprovalHandler userApprovalHandler(ApprovalStore approvalStore) {
+    ApprovalStoreUserApprovalHandler handler = new ApprovalStoreUserApprovalHandler();
+    handler.setApprovalStore(approvalStore);
+    handler.setRequestFactory(new DefaultOAuth2RequestFactory(clientDetailsService));
+    handler.setClientDetailsService(clientDetailsService);
+    return handler;
+  }
+
 }
